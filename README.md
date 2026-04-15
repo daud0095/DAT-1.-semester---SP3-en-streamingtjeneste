@@ -24,6 +24,6 @@ Brugere kan søge, gemme og "afspille" film og serier — alt fra terminalen.
 - File I/O til vedvarende data
 
 ## 👥 Udviklere
-- [Navn]
-- [Navn]
-- [Navn]
+- Daud
+- 
+- 
