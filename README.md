@@ -28,4 +28,4 @@ Brugere kan søge, gemme og "afspille" film og serier — alt fra terminalen.
 - Mahdi
 - Zouhir
 - Iman
-- Hanna
+- Hannah
