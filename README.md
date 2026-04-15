@@ -25,5 +25,7 @@ Brugere kan søge, gemme og "afspille" film og serier — alt fra terminalen.
 
 ## 👥 Udviklere
 - Daud
-- 
-- 
+- Mahdi
+- Zouhir
+- Iman
+- Hanna
