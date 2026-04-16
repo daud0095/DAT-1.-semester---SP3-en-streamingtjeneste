@@ -13,8 +13,8 @@ abstract class Media {
   # releaseYear: int
   # rating: double
   # categories: List<Category>
-  + play()
-  +pause()
+  + play(): void
+  +pause(): void
 }
 
 class Movie {
@@ -31,7 +31,7 @@ class Season {
 }
 
 class Episode {
-  - title: String
+  - episodeNumber: int
   - duration: int
 }
 
@@ -62,39 +62,43 @@ class Menu {
   - media: List<Media>
   - currentUser: User
   - textUI: TextUI
-  - fileIO: fileIo
-  + start()
-  + register()
-  + login()
-  + showMenu()
-  + searchMedia()
-  + searchByCategory()
-  + showWatchedMedia()
-  + showSavedMedia()
+
+  + start(): void
+  + register(): void
+  + login(): boolean
+  + showMenu(): void
+  + searchMedia(): void
+  + searchByCategory(): void
+  + showWatchedMedia(): void
+  + showSavedMedia(): void
 }
 
 class TextUI {
-  - scanner: Scanner
-  + getUserInput(): String
-  + showMessage(message: String)
-  + promptForUsername(): String
-  + promptForPassword(): String
+  - sc: Scanner {static}
+  + promptChoice(options: ArrayList<String>, limit: int, msg: String): ArrayList<String>
+  + displayList(list: ArrayList<String>, msg: String): void
+  + displayMsg(msg: String): void
+  + promptNumeric(msg: String): int
+  + promptText(msg: String): String
+  + promptBinary(msg: String): boolean
 }
 
-class fileIo {
-  - userFile: String
-  + loadMovies()
-  + loadSeries()
-  + saveUsers(users: List<User>)
+class fileIO {
+    + saveData(list: ArrayList<String>, path: String, header: String): void
+    + readData(path: String): ArrayList<String> {static}
+    + readData(path: String, length: int): String[] {static}
 }
 
 ' Arv
 Media <|-- Movie
 Media <|-- Series
+Media <|-- Episode
+
+
 
 ' Komposition
-Series *-- Season
-Season *-- Episode
+Series *-- Season: has-a
+Season *-- Episode: has-a
 
 ' Association
 User --> Media
@@ -104,6 +108,6 @@ Menu --> Media
 
 ' Dependency
 Menu --> TextUI
-Menu --> fileIo
+Menu --> fileIO
 
 @enduml
