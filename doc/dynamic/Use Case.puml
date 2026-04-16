@@ -26,37 +26,27 @@ rectangle StreamFlix {
   usecase "Gem serie til seeliste" as UC14
   usecase "Slet serie fra seeliste" as UC15
 
+  usecase "Menu" as UC16
+
 }
 
 ' Brugeren starter disse selv
 u --> UC1
 u --> UC2
-u --> UC3
-u --> UC4
-u --> UC5
-u --> UC6
-u --> UC7
-u --> UC8
-u --> UC9
-u --> UC10
-u --> UC11
-u --> UC14
-u --> UC15
-
-' Man skal være logget ind
-UC2 .> UC3 : <<include>>
-UC2 .> UC4 : <<include>>
-UC2 .> UC5 : <<include>>
-UC2 .> UC6 : <<include>>
-UC2 .> UC7 : <<include>>
-
-'Afspilning gemmer automatisk i sete liste
-UC8 .> UC6 : <<include>>
-
-' Serie flow — pile peger nedad
-UC11 .> UC12 : <<include>>
-UC12 .> UC13 : <<include>>
-UC11 .> UC6 : <<include>>
+UC2 --> UC16
+UC1 --> UC2
+UC16 --> UC3
+UC16 --> UC4
+UC16 --> UC5
+UC16 --> UC6
+UC16 --> UC7
+UC4 --> UC12
+UC4 --> UC13
+UC3 --> UC9
+UC7 --> UC10
+UC12 --> UC11
+UC4 --> UC14
+UC7 --> UC15
 
 }
 
