@@ -1,0 +1,65 @@
+@startuml
+!pragma layout smetana
+
+left to right direction
+
+actor Bruger as u
+
+rectangle StreamFlix {
+
+  usecase "User Create" as UC1
+  usecase "Log ind" as UC2
+
+  usecase "Søg efter film" as UC3
+  usecase "Søg efter serie" as UC4
+  usecase "Søg efter kategori" as UC5
+  usecase "Se sete film/serier" as UC6
+  usecase "Se gemte film/serier" as UC7
+
+  usecase "Afspil film" as UC8
+  usecase "Gem film til seeliste" as UC9
+  usecase "Slet film fra seeliste" as UC10
+
+  usecase "Afspil episode" as UC11
+  usecase "Vælg sæson" as UC12
+  usecase "Vælg episode" as UC13
+  usecase "Gem serie til seeliste" as UC14
+  usecase "Slet serie fra seeliste" as UC15
+
+}
+
+' Brugeren starter disse selv
+u --> UC1
+u --> UC2
+u --> UC3
+u --> UC4
+u --> UC5
+u --> UC6
+u --> UC7
+u --> UC8
+u --> UC9
+u --> UC10
+u --> UC11
+u --> UC14
+u --> UC15
+
+' Man skal være logget ind
+UC2 .> UC3 : <<include>>
+UC2 .> UC4 : <<include>>
+UC2 .> UC5 : <<include>>
+UC2 .> UC6 : <<include>>
+UC2 .> UC7 : <<include>>
+
+'Afspilning gemmer automatisk i sete liste
+UC8 .> UC6 : <<include>>
+
+' Serie flow — pile peger nedad
+UC11 .> UC12 : <<include>>
+UC12 .> UC13 : <<include>>
+UC11 .> UC6 : <<include>>
+
+}
+
+
+
+@enduml
