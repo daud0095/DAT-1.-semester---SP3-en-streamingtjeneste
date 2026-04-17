@@ -44,10 +44,10 @@ UC16 --> UC5
 UC16 --> UC6
 UC16 --> UC7
 UC4 --> UC12
-UC4 --> UC13
+UC12 --> UC13
 UC3 --> UC9
 UC7 --> UC10
-UC12 --> UC11
+UC13 --> UC11
 UC4 --> UC14
 UC7 --> UC15
 UC3 --> UC8

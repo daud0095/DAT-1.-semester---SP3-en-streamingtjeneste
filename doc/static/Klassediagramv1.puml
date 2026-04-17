@@ -66,7 +66,7 @@ class Menu {
   - media: List<Media>
   - currentUser: User
   - textUI: TextUI
-  - fileIO: fileIo
+  - FileIO: FileIO
   + start()
   + showMenu()
   + searchMedia()
@@ -80,7 +80,7 @@ class TextUI {
     + promptForPassword(): String
 }
 
-class fileIo {
+class FileIO {
   - userFile: String
   + saveUsers(users: List<User>)
   + loadUsers(): List<User>
@@ -102,5 +102,5 @@ Menu --> Media
 
 ' Dependency
 Menu --> TextUI
-Menu --> fileIo
+Menu --> FileIO
 @enduml
