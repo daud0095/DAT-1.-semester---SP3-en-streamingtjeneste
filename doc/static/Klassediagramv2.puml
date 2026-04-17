@@ -62,7 +62,6 @@ class Menu {
   - media: List<Media>
   - currentUser: User
   - textUI: TextUI
-
   + start(): void
   + register(): void
   + login(): boolean
@@ -83,7 +82,7 @@ class TextUI {
   + promptBinary(msg: String): boolean
 }
 
-class fileIO {
+class FileIO {
     + saveData(list: ArrayList<String>, path: String, header: String): void
     + readData(path: String): ArrayList<String> {static}
     + readData(path: String, length: int): String[] {static}
@@ -108,6 +107,6 @@ Menu --> Media
 
 ' Dependency
 Menu --> TextUI
-Menu --> fileIO
+Menu --> FileIO
 
 @enduml
