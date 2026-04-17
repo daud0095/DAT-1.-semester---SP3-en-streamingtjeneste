@@ -27,12 +27,16 @@ rectangle StreamFlix {
   usecase "Slet serie fra seeliste" as UC15
 
   usecase "Menu" as UC16
+  usecase "Tilbage til Menu" as UC17
+  usecase "Log ud" as UC18
+  usecase "Start" as UC19
 
 }
 
 ' Brugeren starter disse selv
-u --> UC1
-u --> UC2
+u --> UC19
+UC19 --> UC1
+UC19 --> UC2
 UC2 --> UC16
 UC1 --> UC2
 UC16 --> UC3
@@ -47,7 +51,14 @@ UC7 --> UC10
 UC12 --> UC11
 UC4 --> UC14
 UC7 --> UC15
-UC9 --> UC8
+UC3 --> UC8
+
+' Knapper man altid kan tilgås
+UC17 --> UC16
+UC18 --> UC19
+u --> UC17
+u --> UC18
+
 
 }
 
