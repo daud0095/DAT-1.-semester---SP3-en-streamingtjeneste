@@ -102,6 +102,6 @@ Menu --> Media : has-a
 Media --> Category : has-a
 
 ' Dependency
-Menu ..> FileIO : uses
+Menu ..> FileIO : uses 'Menu bruger FileIO midlertidigt.
 
 @enduml
