@@ -1,0 +1,107 @@
+@startuml
+!pragma layout smetana
+
+class User {
+  - username: String
+  - password: String
+  - watchedMedia: List<Media>
+  - savedMedia: List<Media>
+}
+
+abstract class Media {
+  # title: String
+  # releaseYear: int
+  # rating: double
+  # categories: List<Category>
+  + play(): void
+  + pause(): void
+}
+
+class Movie {
+  - duration: int
+}
+
+class Series {
+  - seasons: List<Season>
+}
+
+class Season {
+  - seasonNumber: int
+  - episodes: List<Episode>
+}
+
+class Episode {
+  - episodeNumber: int
+  - duration: int
+}
+
+enum Category {
+  CRIME
+  WAR
+  DRAMA
+  FAMILY
+  ROMANCE
+  SCI_FI
+  FANTASY
+  MYSTERY
+  THRILLER
+  ADVENTURE
+  HISTORY
+  BIOGRAPHY
+  HORROR
+  ANIMATION
+  ACTION
+  WESTERN
+  DOCUMENTARY
+  TALK_SHOW
+  SPORT
+}
+
+class Menu {
+  - users: List<User>
+  - media: List<Media>
+  - currentUser: User
+  + start(): void
+  + register(): void
+  + login(): boolean
+  + showMenu(): void
+  + searchMedia(): void
+  + searchByCategory(): void
+  + showWatchedMedia(): void
+  + showSavedMedia(): void
+}
+
+class TextUI {
+  - sc: Scanner {static}
+  + promptChoice(options: ArrayList<String>, limit: int, msg: String): ArrayList<String>
+  + displayList(list: ArrayList<String>, msg: String): void
+  + displayMsg(msg: String): void
+  + promptNumeric(msg: String): int
+  + promptText(msg: String): String
+  + promptBinary(msg: String): boolean
+}
+
+class FileIO {
+  + saveData(list: ArrayList<String>, path: String, header: String): void
+  + readData(path: String): ArrayList<String> {static}
+  + readData(path: String, length: int): String[] {static}
+}
+
+' Arv
+Media <|-- Movie : has-a
+Media <|-- Series : has-a
+
+' Komposition
+Menu *-- TextUI : has-a
+Series *-- "1..*" Season : has-a
+Season *-- "1..*" Episode : has-a
+
+' Association
+Menu --> User : has-a
+Menu --> Media : has-a
+Media --> Category : has-a
+
+' Dependency
+Menu ..> FileIO : uses
+
+@enduml
