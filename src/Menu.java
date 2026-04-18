@@ -18,7 +18,7 @@ public class Menu {
     }
 
     void start(){
-        if (textUI.promptBinary("1: Har du et login? Y/N")){
+        if (textUI.promptBinary("Har du et login? Y/N")){
             login();
         }else{
             register();
