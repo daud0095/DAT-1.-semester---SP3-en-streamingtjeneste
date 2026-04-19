@@ -16,10 +16,11 @@ public abstract class Media {
     }
 
     public void play(){
-
+        System.out.println("Afspiller: " + title + " (Udgivet: " + releaseYear + ", Rating: " + rating + ")" );
+        System.out.println("Afspilning starter...");
     }
 
     public void pause(){
-
+        System.out.println("Afspilning pauseret for: " + title);
     }
 }
