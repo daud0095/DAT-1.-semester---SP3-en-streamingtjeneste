@@ -6,12 +6,10 @@ public class Movie extends Media{
     }
 
 public void play() {
-    // domain.Movie afspilningslogik her
     System.out.println("Afspiller film: " + getTitle());
 }
 
 public void pause() {
-    // domain.Movie pauselogik her
     System.out.println("Film på pause: " + getTitle());
 }
 }
