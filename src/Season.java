@@ -8,6 +8,9 @@ public class Season extends Series {
     public Season(int seasonNumber){
         super("5");
         this.seasonNumber = seasonNumber;
+
     }
+
+
 
 }
