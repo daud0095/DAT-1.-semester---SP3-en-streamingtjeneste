@@ -1,11 +1,11 @@
 public class Episode {
 
         private int episodeNumber;
-        private int duration;
+        //private int duration;
 
-    public Episode (int episodeNumber, int duration) {
+    public Episode (int episodeNumber) {
         this.episodeNumber = episodeNumber;
-        this.duration = duration;
+        //this.duration = duration;
     }
 
     public void play() {
@@ -17,11 +17,12 @@ public class Episode {
             System.out.println("domain.Episode paused: " + episodeNumber);
         }
 
-        public int getDuration(){
+    //Ingen Duration tid i csv filerne, derfor kan infoen ikke findes frem...
+       /* public int getDuration(){
             System.out.println("This ep. duration is: " + duration);
              return duration;
 
-        }
+        }*/
 
     }
 

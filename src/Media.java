@@ -8,7 +8,7 @@ public abstract class Media {
     protected double rating;
     protected List<Locale.Category> categories;
 
-    public Media(String title, int releaseYear, double rating){
+    public Media(String title, int releaseYear, double rating, ArrayList<Category> categories){
         this.title = title;
         this.releaseYear = releaseYear;
         this.rating = rating;
