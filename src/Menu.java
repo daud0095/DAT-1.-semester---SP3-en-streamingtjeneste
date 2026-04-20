@@ -104,7 +104,20 @@ public class Menu {
 
     }
 
-    void showSavedMedia(){
+    public void showSavedMedia(){
+        List<Media> saved = currentUser.getSavedMedia();
 
+        if(saved.isEmpty()){
+            textUI.displayMsg("Du har ingen gemte medier.");
+        } else {
+            textUI.displayMsg("\n=== Dine gemte medier ===");
+            for(int i = 0; i < saved.size(); i++){
+                Media s = saved.get(i);
+                textUI.displayMsg((1+1) + ", " + s.title + " (" + s.releaseYear + ")");
+            }
+
+            // Bruger vælge et medie
+            int choice = textUI.promptNumeric("Vælg et medie (nummer) eller 0 for tilbage:");
+        }
     }
 }

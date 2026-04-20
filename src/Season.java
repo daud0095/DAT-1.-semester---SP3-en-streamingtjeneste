@@ -10,6 +10,10 @@ public class Season extends Series {
         this.seasonNumber = seasonNumber;
     }
 
+    public int getSeasonNumber(){
+        return seasonNumber;
+    }
+
 
 
 }
