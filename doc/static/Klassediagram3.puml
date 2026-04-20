@@ -18,21 +18,45 @@ abstract class Media {
 }
 
 class Movie {
-  - duration: int
+  - title: String
++ Movie(String title, int releaseYear, double rating,
+                           ArrayList<Category> categories)
+  'Methods
+  - void play()
+  - void pause()
+
 }
 
 class Series {
   - seasons: List<Season>
+  'Constructor
+  + Series(String title, int releaseYear, double rating, ArrayList<Category> categories)
+  'Methods
+  - void play()
+  - void pause()
+  - ArrayList<Season> getSeasons()
 }
 
 class Season {
   - seasonNumber: int
   - episodes: List<Episode>
+ 'Contructor
+ + Season (int seasonNumber)
+   'Methods
+   - int getSeasonNumber()
+   - void setSeasonNumber(int seasonNumber)
+   - ArrayList<Episode> getEpisodes()
+   - void setEpisode(ArrayList<Episode> episodes)
+
 }
 
 class Episode {
   - episodeNumber: int
-  - duration: int
+'Contructor
++ Episode (int episodeNumber)
+'Methods
+  - void play()
+  - void pause()
 }
 
 enum Category {
