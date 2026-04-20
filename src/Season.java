@@ -6,8 +6,8 @@ public class Season extends Series {
     private int seasonNumber;
     private List<Episode> episodes;
 
-    public Season(String title, int releaseYear, double rating, ArrayList<Category> categories, int seasonNumber) {
-        super(title, releaseYear, rating, categories);
+    public Season(int seasonNumber) {
+        super("5");
         this.seasonNumber = seasonNumber;
     }
 

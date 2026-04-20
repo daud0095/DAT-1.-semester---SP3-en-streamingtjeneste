@@ -1,5 +1,6 @@
 import util.TextUI;
-
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -147,7 +148,7 @@ public class Menu {
     }
 
 
-    void showWatchedMedia(){
+    void showWatchedMedia() throws FileNotFoundException {
         List<Media> watchedMedia = currentUser.getWatchedMedia();
         if(watchedMedia.isEmpty()){
             textUI.displayMsg("Ingen resultater fundet.");
@@ -161,7 +162,7 @@ public class Menu {
 
     }
 
-    void showSavedMedia(){
+    void showSavedMedia() throws FileNotFoundException {
         List<Media> savedMedia = currentUser.getSavedMedia();
         if (savedMedia.isEmpty()){
             textUI.displayMsg("Ingen resultater fundet.");
