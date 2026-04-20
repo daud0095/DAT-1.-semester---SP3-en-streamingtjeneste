@@ -141,6 +141,7 @@ public class Menu {
         scanner.close();
 
 
+
         System.out.println("Crime film:");
         for (String movie : crimeMovies) {
             System.out.println(movie);
