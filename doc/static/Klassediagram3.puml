@@ -30,7 +30,7 @@ class Movie {
 class Series {
   - seasons: List<Season>
   'Constructor
-  + Series(String title, int releaseYear, double rating, ArrayList<Category> categories)
+  + Series(String title, int releaseYear, double rating, ArrayList<Category> categories, ArrayList<Season> seasons)
   'Methods
   - void play()
   - void pause()
@@ -41,7 +41,7 @@ class Season {
   - seasonNumber: int
   - episodes: List<Episode>
  'Contructor
- + Season (int seasonNumber)
+ + Season (String title, int releaseYear, double rating, ArrayList<Category> categories, int seasonNumber)
    'Methods
    - int getSeasonNumber()
    - void setSeasonNumber(int seasonNumber)
