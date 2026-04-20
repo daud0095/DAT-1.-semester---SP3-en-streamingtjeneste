@@ -101,10 +101,30 @@ public class Menu {
     }
 
     void showWatchedMedia(){
+        List<Media> watchedMedia = currentUser.getWatchedMedia();
+        if(watchedMedia.isEmpty()){
+            textUI.displayMsg("Ingen resultater fundet.");
+        }else{
+            textUI.displayMsg("\n --- Sete film/Serier --- ");
+            for (int i = 0; i < watchedMedia.size(); i++){
+                textUI.displayMsg((i+1) + ". " + watchedMedia.get(i));
+            }
+        }
+        showMenu();
 
     }
 
     void showSavedMedia(){
+        List<Media> savedMedia = currentUser.getSavedMedia();
+        if (savedMedia.isEmpty()){
+            textUI.displayMsg("Ingen resultater fundet.");
+        }else{
+            for(int i = 0; i < savedMedia.size(); i++){
+                textUI.displayMsg((i+1) + ". " + savedMedia.get(i));
+            }
+        }
+        showMenu();
+
 
     }
 }

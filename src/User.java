@@ -40,6 +40,12 @@ public class User {
             savedMedia.remove(media);
         }
 
+        public void addSavedMedia(Media media){
+            if(!savedMedia.contains(media)){
+                savedMedia.add(media);
+            }
+        }
+
         public boolean isSaved(Media media){
             return savedMedia.contains(media);
         }
