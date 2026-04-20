@@ -1,9 +1,6 @@
-import util.TextUI;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Menu {
     List<User> users;
@@ -89,12 +86,12 @@ public class Menu {
         }
     }
 
-    public void searchMedia() {
+    public void searchMedia() throws FileNotFoundException {
         String searchTerm = textUI.promptText("Søg efter title:");
         List<Media> results = new ArrayList<>();
 
         for (Media m : media) {
-            if (m.title.toLowerCase().contains(searchTerm.toLowerCase())) {
+            if (m.getTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
                 results.add(m);
             }
         }
@@ -103,48 +100,39 @@ public class Menu {
             textUI.displayMsg("Ingen resultater fundet.");
         } else {
             textUI.displayMsg("\n=== Søgeresultater ===");
-            for (Media m : results) {
-                //Media m = results.get(m);
-                textUI.displayMsg((1 + 1) + ". " + m);
+            for (int i = 0; i < results.size(); i++) {
+                textUI.displayMsg((i + 1) + ". " + results.get(i));
             }
         }
+
+        showMenu();
     }
 
     public void searchByCategory() throws FileNotFoundException {
         String searchCategory = textUI.promptText("Søg efter kategori:");
-        File file = new File("CsvFiles/MovieData.csv");
-        Scanner scanner = new Scanner(file);
+        List<Media> results = new ArrayList<>();
 
-        List<String> crimeMovies = new ArrayList<>();
+        String normalizedSearch = searchCategory.trim().toUpperCase().replace("-", "_").replace(" ", "_");
 
-
-        if (scanner.hasNextLine()) {
-            scanner.nextLine();
-        }
-
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-
-            String[] parts = line.split(";\\s*"); //
-
-            if (parts.length < 4) continue;
-
-            String name = parts[0];
-            String category = parts[2];
-
-            if (category.toLowerCase().contains("crime")) {
-                crimeMovies.add(name);
+        for (Media m : media) {
+            for (Category category : m.getCategories()) {
+                if (category.name().equals(normalizedSearch)) {
+                    results.add(m);
+                    break;
+                }
             }
         }
 
-        scanner.close();
-
-
-
-        System.out.println("Crime film:");
-        for (String movie : crimeMovies) {
-            System.out.println(movie);
+        if (results.isEmpty()) {
+            textUI.displayMsg("Ingen resultater fundet.");
+        } else {
+            textUI.displayMsg("\n=== Søgeresultater ===");
+            for (int i = 0; i < results.size(); i++) {
+                textUI.displayMsg((i + 1) + ". " + results.get(i));
+            }
         }
+
+        showMenu();
     }
 
 

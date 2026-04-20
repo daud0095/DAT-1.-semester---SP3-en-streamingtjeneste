@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Season extends Series {
+public class Season{
 
     private int seasonNumber;
     private List<Episode> episodes;
 
     public Season(int seasonNumber) {
-        super("5");
         this.seasonNumber = seasonNumber;
+        this.episodes = new ArrayList<>();
     }
 
     public int getSeasonNumber() {
@@ -19,11 +19,11 @@ public class Season extends Series {
         this.seasonNumber = seasonNumber;
     }
 
-    public ArrayList<Episode> getEpisodes() {
-        return (ArrayList<Episode>) episodes;
+    public List<Episode> getEpisodes() {
+        return episodes;
     }
 
-    public void setEpisode(ArrayList<Episode> episodes) {
+    public void setEpisode(List<Episode> episodes) {
         this.episodes = episodes;
     }
 

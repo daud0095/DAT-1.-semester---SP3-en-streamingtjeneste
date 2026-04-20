@@ -14,7 +14,11 @@ public class Episode {
         }
 
         public void pause() {
-            System.out.println("domain.Episode paused: " + episodeNumber);
+            System.out.println("Episode paused: " + episodeNumber);
+        }
+
+        public int getEpisodeNumber() {
+            return episodeNumber;
         }
 
     //Ingen Duration tid i csv filerne, derfor kan infoen ikke findes frem...

@@ -1,15 +1,21 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Series extends Media{
 
-    private ArrayList<Season> seasons = new ArrayList<>();  // seasons (flertal)
+    private List<Season> seasons;
 
-    public Series(String title, int releaseYear, ArrayList<Category>categories, double rating, String seasonAndEpisodes) {
-        super(title, releaseYear, (ArrayList<Category>)categories, rating);
-        this.seasons = seasons;
-
-
+    public Series(String title, int releaseYear, List<Category> categories, double rating) {
+        super(title, releaseYear, categories, rating);
+        this.seasons = new ArrayList<>();
     }
+
+    public Series(String title, int releaseYear, List<Category> categories, double rating, List<Season> seasons) {
+        super(title, releaseYear, categories, rating);
+        this.seasons = new ArrayList<>(seasons);
+    }
+
+
 
     @Override
     public void play() {
@@ -21,7 +27,7 @@ public class Series extends Media{
         System.out.println("Pauser serie: " + title);
     }
 
-    public ArrayList<Season> getSeasons() {
+    public List<Season> getSeasons() {
         return seasons;
     }
 
