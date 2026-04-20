@@ -77,21 +77,23 @@ public class Menu {
         String searchTerm = textUI.promptText("Søg efter title:");
         List<Media> results = new ArrayList<>();
 
-        for(Media m : media){
-            if(m.title.toLowerCase().contains(searchTerm.toLowerCase())){
+        for(Media m : media) {
+            if (m.title.toLowerCase().contains(searchTerm.toLowerCase())) {
                 results.add(m);
             }
         }
 
-        if(results.isEmpty()){
-            textUI.displayMsg("Ingen resultater fundet.");
-        } else {
-            textUI.displayMsg("\n=== Søgeresultater ===");
-            for(Media m : results){
-                Media m = results.get(m);
-                textUI.displayMsg((1+1) + ". " + m);
+            if(results.isEmpty()){
+                textUI.displayMsg("Ingen resultater fundet.");
+            } else {
+                textUI.displayMsg("\n=== Søgeresultater ===");
+                for(int i = 0; i < results.size(); i++){
+                    Media result = results.get(i);
+                    textUI.displayMsg((1+1) + ". " + result);
+                }
             }
-        }
+
+
     }
 
     void searchByCategory(){

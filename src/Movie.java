@@ -5,11 +5,5 @@ public class Movie extends Media{
         super(title, releaseYear, rating);
     }
 
-    public int getDuration(){
-        return duration;
-    }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
 }
