@@ -48,7 +48,6 @@ public class User {
             return watchedMedia.contains(media);
         }
 
-
     }
 
 
