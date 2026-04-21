@@ -58,7 +58,7 @@ public class Menu {
         start();
     }
 
-    void showMenu() throws FileNotFoundException {
+   public void showMenu() throws FileNotFoundException {
         textUI.displayMsg("\n=== Hovedmenu ===");
         textUI.displayMsg("1. Søg efter media");
         textUI.displayMsg("2. Se dine gemte film/serie");
@@ -163,7 +163,7 @@ public class Menu {
     }
 
 
-    void showWatchedMedia() throws FileNotFoundException {
+    public void showWatchedMedia() throws FileNotFoundException {
         List<Media> watchedMedia = currentUser.getWatchedMedia();
         if(watchedMedia.isEmpty()){
             textUI.displayMsg("Ingen resultater fundet.");
@@ -177,7 +177,7 @@ public class Menu {
 
     }
 
-    void showSavedMedia() throws FileNotFoundException {
+    public void showSavedMedia() throws FileNotFoundException {
         List<Media> savedMedia = currentUser.getSavedMedia();
         if (savedMedia.isEmpty()){
             textUI.displayMsg("Ingen resultater fundet.");
