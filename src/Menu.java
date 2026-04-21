@@ -121,7 +121,7 @@ public class Menu {
                     textUI.displayMsg(chosen.getTitle() + "markeret som set!");
                 } else {
                     currentUser.addSavedMedia(chosen);
-                    textUI.displayMsg(chosen.getTitle() + "gemt");
+                    textUI.displayMsg(chosen.getTitle() + " er gemt");
                 }
                 }
             }
