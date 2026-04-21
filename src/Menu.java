@@ -32,6 +32,7 @@ public class Menu {
 
         User newUser = new User(username, password);
         users.add(newUser);
+        currentUser = newUser;
 
         textUI.displayMsg("Bruger oprettet! Velkommen " + username);
         showMenu();
@@ -104,7 +105,7 @@ public class Menu {
                 textUI.displayMsg((i + 1) + ". " + results.get(i));
             }
             int choice = textUI.promptNumeric("vælg nummer for at makere dem som set");
-            if (choice > 0 && choice < results.size()){
+            if (choice > 0 && choice < results.size()) {
                 Media chosen = results.get(choice - 1);
                 currentUser.addWatchedMedia(chosen);
                 textUI.displayMsg(chosen.getTitle() + "markeret som set!");
@@ -114,7 +115,7 @@ public class Menu {
         showMenu();
     }
 
-    public void searchByCategory() throws FileNotFoundException {
+    public void searchByCategory() throws FileNotFoundException  {
         String searchCategory = textUI.promptText("Søg efter kategori:");
         List<Media> results = new ArrayList<>();
 
