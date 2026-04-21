@@ -104,11 +104,26 @@ public class Menu {
             for (int i = 0; i < results.size(); i++) {
                 textUI.displayMsg((i + 1) + ". " + results.get(i));
             }
-            int choice = textUI.promptNumeric("vælg nummer for at makere dem som set");
-            if (choice > 0 && choice < results.size()) {
+
+            textUI.displayMsg("\nHvad vil du gøre?");
+            textUI.displayMsg("1. Marker som set");
+            textUI.displayMsg("2. Gem film/serie");
+            textUI.displayMsg("0. Tilbage");
+
+            int action = textUI.promptNumeric("Vælg (0-2)");
+
+            if (action == 1 || action == 2) {
+                int choice = textUI.promptNumeric("vælg nummer for at marker som set");
+                if (choice > 0 && choice <= results.size()) {
                 Media chosen = results.get(choice - 1);
-                currentUser.addWatchedMedia(chosen);
-                textUI.displayMsg(chosen.getTitle() + "markeret som set!");
+                if (action == 1) {
+                    currentUser.addWatchedMedia(chosen);
+                    textUI.displayMsg(chosen.getTitle() + "markeret som set!");
+                } else {
+                    currentUser.addSavedMedia(chosen);
+                    textUI.displayMsg(chosen.getTitle() + "gemt");
+                }
+                }
             }
         }
 
@@ -162,7 +177,7 @@ public class Menu {
         if (savedMedia.isEmpty()){
             textUI.displayMsg("Ingen resultater fundet.");
         }else{
-            textUI.displayMsg("\n --- Sete film/Serier --- ");
+            textUI.displayMsg("\n --- gemte film/Serier --- ");
             for(int i = 0; i < savedMedia.size(); i++){
                 textUI.displayMsg((i+1) + ". " + savedMedia.get(i));
             }
