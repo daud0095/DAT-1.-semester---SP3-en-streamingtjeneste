@@ -103,6 +103,12 @@ public class Menu {
             for (int i = 0; i < results.size(); i++) {
                 textUI.displayMsg((i + 1) + ". " + results.get(i));
             }
+            int choice = textUI.promptNumeric("vælg nummer for at makere dem som set");
+            if (choice > 0 && choice < results.size()){
+                Media chosen = results.get(choice - 1);
+                currentUser.addWatchedMedia(chosen);
+                textUI.displayMsg(chosen.getTitle() + "markeret som set!");
+            }
         }
 
         showMenu();
@@ -155,6 +161,7 @@ public class Menu {
         if (savedMedia.isEmpty()){
             textUI.displayMsg("Ingen resultater fundet.");
         }else{
+            textUI.displayMsg("\n --- Sete film/Serier --- ");
             for(int i = 0; i < savedMedia.size(); i++){
                 textUI.displayMsg((i+1) + ". " + savedMedia.get(i));
             }
