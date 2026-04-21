@@ -3,10 +3,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
 public class FileIO {
+
+    static final String USER_HEADER = "username, password, watchedMedia, savedMedia";
 
 
     public void saveData(ArrayList<String> list, String path, String header){
@@ -39,6 +41,63 @@ public class FileIO {
             System.out.println("Filen findes ikke");
         }
         return data;
+    }
+
+    public List<User> loadUsers(String path, List<Media> mediaList) {
+        List<User> users = new ArrayList<>();
+
+        try (Scanner scan = new Scanner(new File(path))){
+            if (scan.hasNextLine()){
+                scan.nextLine(); // skip header
+            }
+
+            while (scan.hasNextLine()){
+                String line = scan.nextLine().trim();
+                if (line.isEmpty()) {
+                    continue;
+                }
+
+                String[] parts = line.split(";", -1);
+                if (parts.length < 2) {
+                    continue;
+                }
+
+                String username = parts[0].trim();
+                String password = parts[1].trim();
+                User user = new User(username, password);
+
+                if (parts.length > 2) {
+                    user.getWatchedMedia().addAll(parseMediaList(parts[2], mediaList));
+                }
+
+                if (parts.length > 3) {
+                    user.getSavedMedia().addAll(parseMediaList(parts[3], mediaList));
+                }
+
+                users.add(user);
+
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Filen findes ikke: " + e.getMessage());
+        }
+
+        return users;
+    }
+
+    public void saveUsers(String path, List<User> users) {
+        try (FileWriter writer = new FileWriter(path)) {
+            writer.write(USER_HEADER + "\n");
+
+            for (User user : users) {
+                String watchedMedia = formatMediaList(user.getWatchedMedia());
+                String savedMedia = formatMediaList(user.getSavedMedia());
+
+                writer.write(user.getUsername() + "; " + user.getPassword() + "; " + watchedMedia + "; " + savedMedia + "\n");
+            }
+        }catch (IOException e) {
+            System.out.println("Problem: " + e.getMessage());
+        }
     }
 
     public static String[] readData(String path, int length){
@@ -157,5 +216,46 @@ public class FileIO {
         }
 
         return seasons;
+    }
+
+    private List<Media> parseMediaList(String text, List<Media> mediaList) {
+        List<Media> result = new ArrayList<>();
+
+        for (String mediaTitle : text.split(",")) {
+            String trimmedTitle = mediaTitle.trim();
+            if (trimmedTitle.isEmpty()) {
+                continue;
+            }
+
+            Media matchedMedia = findMediaByTitle(trimmedTitle, mediaList);
+            if (matchedMedia != null) {
+                result.add(matchedMedia);
+            }
+        }
+
+        return result;
+    }
+
+    private Media findMediaByTitle(String title, List<Media> mediaList) {
+        for (Media media : mediaList) {
+            if (media.getTitle().equalsIgnoreCase(title)) {
+                return media;
+            }
+        }
+
+        return null;
+    }
+
+    private String formatMediaList(List<Media> mediaList) {
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < mediaList.size(); i++) {
+            if (i > 0) {
+                builder.append(", ");
+            }
+            builder.append(mediaList.get(i).getTitle());
+        }
+
+        return builder.toString();
     }
 }

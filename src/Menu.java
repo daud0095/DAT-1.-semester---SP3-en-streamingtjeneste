@@ -7,13 +7,15 @@ public class Menu {
     List<Media> media;
     User currentUser;
     TextUI textUI;
+    FileIO fileIO;
 
 
-    public Menu(List<User> users, List<Media> media, User currentUser, TextUI textUI) {
+    public Menu(List<User> users, List<Media> media, User currentUser, TextUI textUI, FileIO fileIO) {
         this.users = users;
         this.media = media;
         this.currentUser = currentUser;
         this.textUI = textUI;
+
 
     }
 
@@ -32,7 +34,9 @@ public class Menu {
 
         User newUser = new User(username, password);
         users.add(newUser);
+        fileIO.saveUsers("CsvFiles/UserData.csv", users);
 
+        currentUser = newUser;
         textUI.displayMsg("Bruger oprettet! Velkommen " + username);
         showMenu();
     }

@@ -10,8 +10,15 @@ public class User {
         public User(String username, String password) {
             this.username = username;
             this.password = password;
-            this.watchedMedia = new ArrayList<>();
-            this.savedMedia = new ArrayList<>();
+            this.watchedMedia = new ArrayList<>(watchedMedia);
+            this.savedMedia = new ArrayList<>(savedMedia);
+        }
+
+        public User(String username, String password, List<Media> watchedMedia, List<Media> savedMedia) {
+            this.username = username;
+            this.password = password;
+            this.watchedMedia = new ArrayList<>(watchedMedia);
+            this.savedMedia = new ArrayList<>(savedMedia);
         }
 
         public String getUsername(){

@@ -8,16 +8,16 @@ public class Main {
         TextUI textUI = new TextUI();
         FileIO fileIO = new FileIO();
 
-        List<User> users = new ArrayList<>();
+
         List<Media> media = new ArrayList<>();
 
         media.addAll(fileIO.loadMovies("CsvFiles/MovieData.csv"));
         media.addAll(fileIO.loadSeries("CsvFiles/SeriesData.csv"));
-
+        List<User> users = fileIO.loadUsers("CsvFiles/UserData.csv", media);
 
         User currentUser = null;
 
-        Menu menu = new Menu(users, media, currentUser, textUI);
+        Menu menu = new Menu(users, media, currentUser, textUI, fileIO);
         menu.start();
     }
 }
