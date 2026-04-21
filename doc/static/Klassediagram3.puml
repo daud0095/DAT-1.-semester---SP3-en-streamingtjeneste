@@ -41,7 +41,7 @@ class Season {
   - seasonNumber: int
   - episodes: List<Episode>
  'Contructor
- + Season (String title, int releaseYear, double rating, ArrayList<Category> categories, int seasonNumber)
+ + Season (int seasonNumber)
    'Methods
    - int getSeasonNumber()
    - void setSeasonNumber(int seasonNumber)
