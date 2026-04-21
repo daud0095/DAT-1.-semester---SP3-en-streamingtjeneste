@@ -7,15 +7,13 @@ public class Menu {
     List<Media> media;
     User currentUser;
     TextUI textUI;
-    FileIO fileIO;
 
 
-    public Menu(List<User> users, List<Media> media, User currentUser, TextUI textUI, FileIO fileIO) {
+    public Menu(List<User> users, List<Media> media, User currentUser, TextUI textUI) {
         this.users = users;
         this.media = media;
         this.currentUser = currentUser;
         this.textUI = textUI;
-
 
     }
 
@@ -107,12 +105,33 @@ public class Menu {
             for (int i = 0; i < results.size(); i++) {
                 textUI.displayMsg((i + 1) + ". " + results.get(i));
             }
+
+            textUI.displayMsg("\nHvad vil du gøre?");
+            textUI.displayMsg("1. Marker som set");
+            textUI.displayMsg("2. Gem film/serie");
+            textUI.displayMsg("0. Tilbage");
+
+            int action = textUI.promptNumeric("Vælg (0-2)");
+
+            if (action == 1 || action == 2) {
+                int choice = textUI.promptNumeric("vælg nummer for at marker som set");
+                if (choice > 0 && choice <= results.size()) {
+                Media chosen = results.get(choice - 1);
+                if (action == 1) {
+                    currentUser.addWatchedMedia(chosen);
+                    textUI.displayMsg(chosen.getTitle() + "markeret som set!");
+                } else {
+                    currentUser.addSavedMedia(chosen);
+                    textUI.displayMsg(chosen.getTitle() + "gemt");
+                }
+                }
+            }
         }
 
         showMenu();
     }
 
-    public void searchByCategory() throws FileNotFoundException {
+    public void searchByCategory() throws FileNotFoundException  {
         String searchCategory = textUI.promptText("Søg efter kategori:");
         List<Media> results = new ArrayList<>();
 
@@ -159,6 +178,7 @@ public class Menu {
         if (savedMedia.isEmpty()){
             textUI.displayMsg("Ingen resultater fundet.");
         }else{
+            textUI.displayMsg("\n --- gemte film/Serier --- ");
             for(int i = 0; i < savedMedia.size(); i++){
                 textUI.displayMsg((i+1) + ". " + savedMedia.get(i));
             }
