@@ -7,13 +7,15 @@ public class Menu {
     List<Media> media;
     User currentUser;
     TextUI textUI;
+    FileIO fileIO;
 
 
-    public Menu(List<User> users, List<Media> media, User currentUser, TextUI textUI) {
+    public Menu(List<User> users, List<Media> media, User currentUser, TextUI textUI, FileIO fileIO) {
         this.users = users;
         this.media = media;
         this.currentUser = currentUser;
         this.textUI = textUI;
+        this.fileIO = fileIO;
 
     }
 
@@ -119,9 +121,11 @@ public class Menu {
                 Media chosen = results.get(choice - 1);
                 if (action == 1) {
                     currentUser.addWatchedMedia(chosen);
+                    fileIO.saveUsers("CsvFiles/UserData.csv", users);
                     textUI.displayMsg(chosen.getTitle() + "markeret som set!");
                 } else {
                     currentUser.addSavedMedia(chosen);
+                    fileIO.saveUsers("CsvFiles/UserData.csv", users);
                     textUI.displayMsg(chosen.getTitle() + "gemt");
                 }
                 }
