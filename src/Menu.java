@@ -19,7 +19,7 @@ public class Menu {
 
     }
 
-    void start() throws FileNotFoundException {
+    public void start() throws FileNotFoundException {
         if (textUI.promptBinary("Har du et login? Y/N")) {
             login();
         } else {
@@ -28,7 +28,7 @@ public class Menu {
 
     }
 
-    void register() throws FileNotFoundException {
+    public void register() throws FileNotFoundException {
         String username = textUI.promptText("Skriv brugernavn:");
         String password = textUI.promptText("Skriv adgangskode:");
 
@@ -41,7 +41,7 @@ public class Menu {
         showMenu();
     }
 
-    void login() throws FileNotFoundException {
+    public void login() throws FileNotFoundException {
         String username = textUI.promptText("Skriv brugernavn");
         String password = textUI.promptText("Skriv adgangskode");
 
