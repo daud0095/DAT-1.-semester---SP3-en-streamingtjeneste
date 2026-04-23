@@ -1,0 +1,121 @@
+@startuml
+
+@startuml
+!pragma layout smetana
+
+class User {
+  - username: String
+  - password: String
+  - watchedMedia: List<Media>
+  - savedMedia: List<Media>
+}
+
+abstract class Media {
+  # title: String
+  # releaseYear: int
+  # rating: double
+  # categories: List<Locale.Category>
+  + play(): void
+  + pause(): void
+}
+
+class Movie {
+  + Movie(String title, int releaseYear, double rating)
+}
+
+class Series {
+  - seasons: ArrayList<Season>
+  + Series(String title, int releaseYear, double rating)
+  + getSeasons(): ArrayList<Season>
+}
+
+class Season {
+  - seasonNumber: int
+  - episodes: List<Episode>
+  + Season(int seasonNumber)
+  + getSeasonNumber(): int
+  + setSeasonNumber(int seasonNumber): void
+  + getEpisodes(): ArrayList<Episode>
+  + setEpisode(ArrayList<Episode> episodes): void
+}
+
+class Episode {
+  - episodeNumber: int
+  + Episode(int episodeNumber)
+  + play(): void
+  + pause(): void
+}
+
+enum Category {
+  CRIME
+  WAR
+  DRAMA
+  FAMILY
+  ROMANCE
+  SCI_FI
+  FANTASY
+  MYSTERY
+  THRILLER
+  ADVENTURE
+  HISTORY
+  BIOGRAPHY
+  HORROR
+  ANIMATION
+  ACTION
+  WESTERN
+  DOCUMENTARY
+  TALK_SHOW
+  SPORT
+}
+
+class Menu {
+  - users: List<User>
+  - media: List<Media>
+  - currentUser: User
+  + start(): void throws FileNotFoundException
+  + register(): void throws FileNotFoundException
+  + login(): void throws FileNotFoundException
+  + showMenu(): void throws FileNotFoundException
+  + searchMedia(): void throws FileNotFoundException
+  + searchByCategory(): void throws FileNotFoundException
+  + showWatchedMedia(): void throws FileNotFoundException
+  + showSavedMedia(): void throws FileNotFoundException
+}
+
+class TextUI {
+  - sc: Scanner {static}
+  + promptChoice(options: ArrayList<String>, limit: int, msg: String): ArrayList<String>
+  + displayList(list: ArrayList<String>, msg: String): void
+  + displayMsg(msg: String): void
+  + promptNumeric(msg: String): int
+  + promptText(msg: String): String
+  + promptBinary(msg: String): boolean
+}
+
+class FileIO {
+  + saveData(list: ArrayList<String>, path: String, header: String): void
+  + readData(path: String): ArrayList<String> {static}
+  + readData(path: String, length: int): String[] {static}
+}
+
+' Arv
+Media <|-- Movie : extends
+Media <|-- Series : extends
+
+' Komposition
+Menu *-- TextUI : has-a
+Series *-- "1..*" Season : has-a
+Season *-- "1..*" Episode : has-a
+
+' Association
+Menu --> User : has-a
+Menu --> Media : has-a
+Media --> Category : has-a
+
+' Dependency
+Menu ..> FileIO : uses
+
+@enduml
+
+
+@enduml
